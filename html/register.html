@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>注册</title>\
+		<link rel="stylesheet" href="css/register.css">
+		<script src="js/jquery.1.11.3.js"></script>
+		<script type="text/javascript">
+			$(function(){
+				$("#btn").click(function(){
+					let username = $("#iptTexts").val();
+					let password = $("#iptPsds").val();
+					let url = "http://jx.xuzhixiang.top/ap/api/reg.php";
+					$.ajax({
+						type:"Get",
+						url,
+						data:`username=${username}&password=${password}`,
+						success:function(res){
+							
+							if(res.code == 1){
+								alert(res.msg);
+								location.href ="login.html";
+							}else{
+								alert(res.msg)
+							}
+						}
+					})	
+				})
+			})
+		</script>
+	</head>
+	<body>
+		<img src="https://img.alicdn.com/tfs/TB1_Gn8RXXXXXXqaFXXXXXXXXXX-380-54.png" alt="" class="TMall">
+		<div class="center">
+			<div class="login">
+				<p>注册账号</p>
+				<div class="TMall-login">
+					<img src="img/未标题-1.gif" alt="">
+					<input type="text" placeholder="会员名/手机号" autocomplete="off" id="iptTexts"><br>
+				</div>
+				<div class="TMall-login">
+					<img src="img/suo.gif" alt="">
+					<input type="password" placeholder="请输入您的密码" autocomplete="off" id="iptPsds"><br>
+				</div>
+				<button type="button" id="btn">注册</button>
+			</div>
+		</div>
+	</body>
+</html>

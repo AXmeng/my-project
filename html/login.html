@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>登录</title>
+		<link rel="stylesheet" type="text/css" href="css/login.css"/>
+		<script src="js/jquery.1.11.3.js"></script>
+		<script>
+			$(function(){
+				$(".oUl li").mouseenter(function(){
+					$(this).addClass("red").siblings().removeClass("red");
+				}).mouseleave(function(){
+					$(this).removeClass("red");
+				})
+				$("#btn1").click(function(){
+					let username = $("#iptText").val();
+					let password = $("#iptPsd").val();
+					let url = 'http://jx.xuzhixiang.top/ap/api/login.php'
+					$.ajax({
+						type:"Get",
+						url,
+						data:`username=${username}&password=${password}`,
+						success:function(res){
+							console.log(res.data);
+							if(res.code == 1){
+								localStorage.setItem("u-id",res.data.id);
+								localStorage.setItem("u-token",res.data.token)
+								alert("登录成功")
+								location.href="index.html"
+							}else{
+								alert(res.msg)
+							}
+						}
+					})
+				})
+				$("#btn2").click(function(){
+					location.href= "register.html"
+				})
+			})
+		</script>
+	</head>
+	<body>
+		<a href="index.html">
+		<img src="https://img.alicdn.com/tfs/TB1_Gn8RXXXXXXqaFXXXXXXXXXX-380-54.png" alt="" class="TMall">
+		</a>
+		<div class="center">
+			<div class="login">
+				<p>密码登录</p>
+				<div class="TMall-login">
+					<img src="img/未标题-1.gif" alt="">
+					<input type="text" placeholder="会员名/手机号" autocomplete="off" id="iptText"><br>
+				</div>
+				<div class="TMall-login">
+					<img src="img/suo.gif" alt="">
+					<input type="password" placeholder="请输入您的密码" autocomplete="off" id="iptPsd"><br>
+				</div>
+				<button type="button" id="btn1">登录</button>
+				<button type="button" id="btn2">免费注册</button>
+				
+			</div>
+			
+		</div>
+		<ul class="oUl">
+			<a href="https://pages.tmall.com/wow/seller/act/2019seller?from=zebra:offline"><li>关于天猫</li></a>
+			<a href="https://helpcenter.tmall.com/index"><li>帮助中心</li></a>	
+			<a href="https://open.taobao.com/?spm=a2240.7829288.a2226n1.3.372a4fe5m3wbYq"><li>开放平台</li></a>
+			<a href="https://job.alibaba.com/zhaopin/index.htm?spm=a2240.7829288.a2226n1.4.372a4fe5m3wbYq"><li>诚聘英才</li></a>
+			<a href="https://consumerservice.taobao.com/contact-us?spm=a2240.7829288.a2226n1.5.372a4fe5m3wbYq"><li>联系我们</li></a>
+			<a href="https://open.taobao.com/index.htm"><li>网站合作</li></a>
+			<a href="https://terms.alicdn.com/legal-agreement/terms/suit_bu1_tmall/suit_bu1_tmall201801121425_43176.html?spm=a2240.7829288.a2226n1.7.372a4fe5m3wbYq"><li>法律声明</li></a>
+			<a href="https://terms.alicdn.com/legal-agreement/terms/suit_bu1_tmall/suit_bu1_tmall201801031144_60809.html?spm=a2240.7829288.a2226n1.8.372a4fe5m3wbYq"><li>隐私权政策</li></a>
+			<a href="https://ipp.alibabagroup.com/?spm=a2240.7829288.a2226n1.9.372a4fe5m3wbYq"><li>知识产权</li></a>
+			<a href="https://jubao.alibaba.com/?spm=a2240.7829288.a2226n1.10.372a4fe5m3wbYq&site=TMALL"><li>廉正举报</li></a>
+		</ul>
+	</body>
+</html>
